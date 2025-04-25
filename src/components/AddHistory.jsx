@@ -20,7 +20,7 @@ const AddHistory = ({ handleAddHistory }) => {
     // console.log("desc:", desc);
     // console.log("amount:", amount);
     if (!desc || !amount) {
-      alert("입력해라");
+      alert("입력하세요");
       return;
     }
     const history = {
@@ -37,51 +37,53 @@ const AddHistory = ({ handleAddHistory }) => {
   };
 
   return (
-    <div className={css.addHistory}>
-      <h2>새로운 거래 추가</h2>
-      <div>
+    <>
+      <div className={css.addHistory}>
+        <h2>새로운 거래 추가</h2>
         <div>
-          <label>
-            <input
-              type="radio"
-              name="type"
-              value="income"
-              checked={type === "income"}
-              onChange={handleRadioChange}
-            />{" "}
-            수입
-          </label>
-          <label>
-            <input
-              type="radio"
-              name="type"
-              value="expense"
-              checked={type === "expense"}
-              onChange={handleRadioChange}
-            />{" "}
-            지출
-          </label>
-        </div>
-        {/* <label htmlFor="description">내용</label> */}
-        <input
-          type="text"
-          id="description"
-          placeholder="내용 입력..."
-          onChange={handleDesc}
-          value={desc}
-        />
+          <div>
+            <label>
+              <input
+                type="radio"
+                name="type"
+                value="income"
+                checked={type === "income"}
+                onChange={handleRadioChange}
+              />{" "}
+              수입
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="type"
+                value="expense"
+                checked={type === "expense"}
+                onChange={handleRadioChange}
+              />{" "}
+              지출
+            </label>
+          </div>
+          {/* <label htmlFor="description">내용</label> */}
+          <input
+            type="text"
+            id="description"
+            placeholder="내용 입력..."
+            onChange={handleDesc}
+            value={desc}
+          />
 
-        {/* <label htmlFor="amount">금액</label> */}
-        <input
-          type="text"
-          id="amount"
-          placeholder="금액 입력..."
-          onChange={handleAmount}
-          value={amount}
-        />
-        <button onClick={handleAddBtn}>거래 추가</button>
+          {/* <label htmlFor="amount">금액</label> */}
+          <input
+            type="text"
+            id="amount"
+            placeholder="금액 입력..."
+            onChange={handleAmount}
+            value={amount}
+          />
+          <button onClick={handleAddBtn}>거래 추가</button>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
