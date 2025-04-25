@@ -31,13 +31,17 @@
 }
 .historyCard::after {
   content: "";
-  border: 2px solid rgb(60, 204, 60);
-  /* rgb(228, 63, 63); */
   position: absolute;
   height: calc(100% - 4px);
   top: 50%;
   right: 0;
   transform: translateY(-50%);
+}
+.historyCard.Income::after {
+  border: 3px solid rgb(60, 204, 60);
+}
+.historyCard.Expense::after {
+  border: 3px solid rgb(228, 63, 63);
 }
 .historyCard button {
   border: none;
@@ -55,11 +59,13 @@
 @media (max-width: 800px) {
   .viewHistory > div {
     height: auto;
+    overflow: hidden;
   }
 }
 @media (max-width: 400px) {
   .historyCard > div:nth-of-type(2) {
     flex-direction: column;
     gap: 0.5rem;
+    align-items: end;
   }
 }

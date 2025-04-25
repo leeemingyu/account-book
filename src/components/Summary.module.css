@@ -9,6 +9,7 @@
   flex-direction: column;
   align-items: center;
   gap: 0.5rem;
+  width: 40%;
 }
 .summary > div > div {
   font-size: 1.4rem;
@@ -32,5 +33,26 @@
 @media (max-width: 800px) {
   .summary {
     height: 7rem;
+  }
+}
+@media (max-width: 400px) {
+  .summary {
+    flex-direction: column;
+  }
+  .summary > div {
+    flex-direction: row;
+    width: 100%;
+    margin-left: 1rem;
+  }
+  .summary > div > h2 {
+    font-size: 1.25rem;
+  }
+  .summary > div > div {
+    font-size: 1rem;
+    font-weight: bold;
+  }
+  .summary > div:nth-of-type(1)::after {
+    width: 80%;
+    height: 0;
   }
 }
