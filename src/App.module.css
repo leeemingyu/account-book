@@ -5,7 +5,7 @@
   align-items: center;
   justify-content: center;
   padding: 0 1rem;
-  background-color: rgb(236, 236, 236);
+  /* background-color: rgb(236, 236, 236); */
   gap: 2rem;
 }
 .wrapper > div {
@@ -17,10 +17,15 @@
 }
 .wrapper > div > div {
   width: 500px;
-}
-.wrapper > div:nth-of-type(1) > div {
   background-color: rgb(255, 255, 255);
-  border: 2px solid rgb(226, 226, 226);
+  border: 1px solid rgb(226, 226, 226);
+  border-radius: 1rem;
+}
+.wrapper > div:nth-of-type(2) > div {
+  padding: 1rem;
+}
+.wrapper > div:nth-of-type(2) > div:nth-of-type(3) {
+  padding: 0;
 }
 
 .summary {
@@ -163,6 +168,9 @@
   }
   .wrapper > div > div {
     width: 90%;
+  }
+  .wrapper > div:nth-of-type(2) > div {
+    width: calc(90% - 2rem);
   }
 
   .summary {

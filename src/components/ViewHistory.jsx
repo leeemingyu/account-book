@@ -38,9 +38,14 @@ const ViewHistory = ({ historyData, handleDeleteHistory }) => {
               }`}
               key={i}
             >
+              {console.log(item.type)}
               <div>{item.desc}</div>
               <div>
-                <div>
+                <div
+                  className={`${css.amount} ${
+                    item.type === "income" ? css.Income : css.Expense
+                  }`}
+                >
                   {item.type === "income" ? "+" : "-"}
                   {parseInt(item.amount).toLocaleString()}₩
                 </div>
