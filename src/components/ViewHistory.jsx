@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import css from "./ViewHistory.module.css";
 import Modal from "./Modal";
 
@@ -6,6 +6,8 @@ const ViewHistory = ({ historyData, handleDeleteHistory }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const reversedData = [...historyData].reverse();
   const [selectedItem, setSelectedItem] = useState("");
+
+  const historyListRef = useRef(null);
 
   const handleModalConfirm = () => {
     handleDeleteHistory(selectedItem);
@@ -18,11 +20,17 @@ const ViewHistory = ({ historyData, handleDeleteHistory }) => {
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
+  useEffect(() => {
+    if (historyListRef.current) {
+      historyListRef.current.scrollTop = 0;
+    }
+  }, [historyData]);
+
   return (
     <>
       <div className={css.viewHistory}>
         <h2>내역</h2>
-        <div>
+        <div ref={historyListRef}>
           {reversedData.map((item, i) => (
             <div
               className={`${css.historyCard} ${
@@ -34,10 +42,15 @@ const ViewHistory = ({ historyData, handleDeleteHistory }) => {
               <div>
                 <div>
                   {item.type === "income" ? "+" : "-"}
-                  {item.amount}₩
+                  {parseInt(item.amount).toLocaleString()}₩
                 </div>
                 <div>
-                  <button onClick={() => handleDeleteBtn(item)}>삭제</button>
+                  <div
+                    className={css.delBtn}
+                    onClick={() => handleDeleteBtn(item)}
+                  >
+                    삭제
+                  </div>
                 </div>
               </div>
             </div>

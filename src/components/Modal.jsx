@@ -7,12 +7,16 @@ const Modal = ({ handleModalClose, handleModalConfirm }) => {
       if (e.key === "Escape") {
         handleModalClose();
       }
+      if (e.key === "Enter") {
+        handleModalConfirm();
+      }
     };
+
     document.addEventListener("keydown", handleKeyDown);
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [handleModalClose]);
+  }, [handleModalClose, handleModalConfirm]);
 
   return (
     <div className={css.wrapper} onClick={handleModalClose}>

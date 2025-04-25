@@ -5,7 +5,7 @@ const Balance = ({ balance }) => {
   return (
     <div className={css.balance}>
       <h2>잔액</h2>
-      <div>₩{balance}</div>
+      <div>₩{balance.toLocaleString()}</div>
     </div>
   );
 };

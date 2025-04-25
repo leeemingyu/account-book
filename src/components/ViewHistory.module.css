@@ -10,7 +10,7 @@
   flex-direction: column;
   gap: 0.5rem;
   overflow: auto;
-  height: calc(257px - 40px);
+  height: 266px;
 }
 .historyCard {
   display: flex;
@@ -43,6 +43,22 @@
 .historyCard.Expense::after {
   border: 3px solid rgb(228, 63, 63);
 }
+.delBtn {
+  border: none;
+  margin: 0 0.2rem;
+  padding: 0.75rem;
+  background-color: rgb(228, 63, 63);
+  color: white;
+  transition: background-color 0.1s;
+  width: 28px;
+  font-size: 0.8rem;
+  display: flex;
+  justify-content: center;
+}
+.delBtn:hover {
+  cursor: pointer;
+  background-color: rgb(224, 35, 35);
+}
 .historyCard button {
   border: none;
   margin: 0 0.2rem;
@@ -50,6 +66,7 @@
   background-color: rgb(228, 63, 63);
   color: white;
   transition: background-color 0.1s;
+  width: 51px;
 }
 .historyCard button:hover {
   cursor: pointer;

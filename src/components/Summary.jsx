@@ -6,11 +6,11 @@ const Summary = ({ totalIncome, totalExpense }) => {
     <div className={css.summary}>
       <div>
         <h2>수입</h2>
-        <div>₩{totalIncome}</div>
+        <div>₩{totalIncome.toLocaleString()}</div>
       </div>
       <div>
         <h2>지출</h2>
-        <div>₩{totalExpense}</div>
+        <div>₩{totalExpense.toLocaleString()}</div>
       </div>
     </div>
   );
