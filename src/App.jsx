@@ -44,8 +44,6 @@ function App() {
   };
 
   const handleAddHistory = (updatedData) => {
-    console.log(updatedData);
-
     setHistoryData(updatedData);
     calculateTotal(updatedData);
   };
