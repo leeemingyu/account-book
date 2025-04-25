@@ -1,0 +1,41 @@
+.addHistory {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+.addHistory > h2 {
+  margin-bottom: 0.5rem;
+}
+.addHistory > div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 1rem;
+}
+.addHistory > div > div {
+  display: flex;
+  gap: 1.25rem;
+}
+.addHistory > div > input {
+  box-sizing: border-box;
+  border: 1px solid rgb(196, 196, 196);
+  outline: none;
+  height: 2rem;
+  transition: box-shadow 0.1s;
+  padding: 1.5rem 1rem;
+}
+.addHistory > div > input:focus {
+  box-shadow: 0 0 0 2px rgb(19, 19, 19);
+}
+.addHistory button {
+  background-color: rgb(106, 106, 243);
+  height: 3rem;
+  color: white;
+  font-size: 1.25rem;
+  border: none;
+  transition: background-color 0.3s;
+}
+.addHistory button:hover {
+  cursor: pointer;
+  background-color: rgb(79, 79, 243);
+}
