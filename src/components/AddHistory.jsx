@@ -1,7 +1,11 @@
 import React, { useRef, useState } from "react";
 import css from "./AddHistory.module.css";
+import { useSetRecoilState } from "recoil";
+import { historyState } from "../recoil/atom";
 
 const AddHistory = ({ handleAddHistory }) => {
+  const setHistory = useSetRecoilState(historyState);
+
   const [type, setType] = useState("income");
   const [desc, setDesc] = useState("");
   const [amount, setAmount] = useState("");
@@ -9,6 +13,7 @@ const AddHistory = ({ handleAddHistory }) => {
   const [invalidAmount, setInvalidAmount] = useState("");
 
   const descriptionInputRef = useRef(null);
+  const amountInputRef = useRef(null);
 
   const handleRadioChange = (e) => {
     setType(e.target.value);
@@ -23,36 +28,38 @@ const AddHistory = ({ handleAddHistory }) => {
   };
   const handleAddBtn = () => {
     if (!desc && !amount) {
+      descriptionInputRef.current.focus();
       setInvalidDesc("내용을 입력해주세요.");
       setInvalidAmount("금액을 입력해주세요.");
       return;
     }
     if (!desc) {
+      descriptionInputRef.current.focus();
       setInvalidDesc("내용을 입력해주세요.");
       return;
     }
     if (!amount) {
+      amountInputRef.current.focus();
       setInvalidAmount("금액을 입력해주세요.");
       return;
     }
     if (isNaN(amount)) {
+      amountInputRef.current.focus();
       setInvalidAmount("숫자만 입력해주세요.");
       return;
     }
     if (amount <= 0) {
+      amountInputRef.current.focus();
       setInvalidAmount("양수를 입력해주세요.");
       return;
     }
 
-    const history = {
-      type: type === "income" ? "income" : "expense",
+    const newItem = {
+      type: type,
       desc: desc,
       amount: amount,
     };
-    const prevData = JSON.parse(localStorage.getItem("history") || "[]");
-    const updatedData = [...prevData, history];
-    localStorage.setItem("history", JSON.stringify(updatedData));
-    handleAddHistory(updatedData);
+    setHistory((prev) => [...prev, newItem]);
     setDesc("");
     setAmount("");
     descriptionInputRef.current.focus();
@@ -119,6 +126,7 @@ const AddHistory = ({ handleAddHistory }) => {
               value={amount}
               className={invalidAmount === "" ? "" : css.disabledInput}
               onKeyDown={handleKeyDown}
+              ref={amountInputRef}
             />
             {invalidAmount === "" ? (
               ""

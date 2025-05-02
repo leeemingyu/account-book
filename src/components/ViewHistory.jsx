@@ -1,16 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import css from "./ViewHistory.module.css";
 import Modal from "./Modal";
+import { useRecoilState } from "recoil";
+import { historyState } from "../recoil/atom";
 
-const ViewHistory = ({ historyData, handleDeleteHistory }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const reversedData = [...historyData].reverse();
+const ViewHistory = () => {
+  const [history, setHistory] = useRecoilState(historyState);
+  const reversedData = [...history].reverse();
   const [selectedItem, setSelectedItem] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const historyListRef = useRef(null);
 
   const handleModalConfirm = () => {
-    handleDeleteHistory(selectedItem);
+    deleteItem(selectedItem);
     setIsModalOpen(false);
   };
   const handleDeleteBtn = (item) => {
@@ -24,8 +27,11 @@ const ViewHistory = ({ historyData, handleDeleteHistory }) => {
     if (historyListRef.current) {
       historyListRef.current.scrollTop = 0;
     }
-  }, [historyData]);
-
+  }, [history]);
+  const deleteItem = (deleteItem) => {
+    const updatedHistory = history.filter((item) => item != deleteItem);
+    setHistory(updatedHistory);
+  };
   return (
     <>
       <div className={css.viewHistory}>
@@ -38,7 +44,6 @@ const ViewHistory = ({ historyData, handleDeleteHistory }) => {
               }`}
               key={i}
             >
-              {console.log(item.type)}
               <div>{item.desc}</div>
               <div>
                 <div

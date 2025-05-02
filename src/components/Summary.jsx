@@ -1,16 +1,21 @@
 import React from "react";
 import css from "./Summary.module.css";
+import { useRecoilValue } from "recoil";
+import { totalExpenseState, totalIncomeState } from "../recoil/selector";
 
-const Summary = ({ totalIncome, totalExpense }) => {
+const Summary = () => {
+  const income = useRecoilValue(totalIncomeState);
+  const expense = useRecoilValue(totalExpenseState);
+
   return (
     <div className={css.summary}>
       <div>
         <h2>수입</h2>
-        <div>₩{totalIncome.toLocaleString()}</div>
+        <div>{income.toLocaleString()}</div>
       </div>
       <div>
         <h2>지출</h2>
-        <div>₩{totalExpense.toLocaleString()}</div>
+        <div>{expense.toLocaleString()}</div>
       </div>
     </div>
   );
